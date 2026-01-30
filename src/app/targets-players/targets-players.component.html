@@ -1,0 +1,32 @@
+<!-- CONTENEDOR FULL CENTRO -->
+ <nav>
+    <a class="button" routerLink="/main-page">Volver</a>
+ </nav>
+<div class="min-h-screen flex items-center justify-center">
+  <div
+    class="grid place-items-center w-72 h-48 perspective cursor-pointer"
+    (click)="flipped = !flipped"
+  >
+    <div
+      class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d"
+      [class.rotate-y-180]="flipped"
+    >
+
+      <!-- FRONT -->
+      <div class="absolute w-full h-full backface-hidden flex items-center justify-center">
+        <p-card header="Frontend" class="text-center bg-amber-300 p-7">
+          <p>Angular · PrimeNG · Tailwind</p>
+        </p-card>
+      </div>
+
+      <!-- BACK -->
+      <div class="absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center">
+        <p-card header="Backend" class="text-center bg-emerald-300 p-7">
+          <p>Python · APIs · IA</p>
+        </p-card>
+      </div>
+
+    </div>
+  </div>
+</div>
+
