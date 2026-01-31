@@ -1,5 +1,49 @@
 <h4>main component to work </h4>
+<div>
 
+  <div *ngFor="let jugador of jugadores; trackBy: trackById">
+    <input #inp type="text"
+    [value]="jugador.name"
+    (keydown.enter)="cambiar_nombre(jugador.id, inp.value)"
+    ><i class="bi bi-x-circle cursor-pointer"  (click)="eliminar_jugador(jugador.id)"></i>
+  </div>
+
+
+  <input
+  type="text"
+  [(ngModel)]="nuevo_jugador"
+  (keydown.enter)="agregar()"
+  placeholder="Escribe algo"
+  />
+  
+  <button class="button" (click)="agregar()">agregar</button>
+  
+
+  <p>se agregaran jugadores</p>
+</div>
+<div *ngFor="let categoria of categorias">
+
+<label class="flex items-center gap-2">
+  <input 
+  class="cursor-pointer accent-pink-500"
+  type="checkbox"
+  [checked]="categoria.checked"
+  (change)="tema_escogido(categoria.categoria)"
+  />
+{{categoria.categoria}}</label>
+
+
+
+</div>
+
+<button class="button" (click)="guardar()">guardar</button>
+<button class="button" (click)="leer()">mostrar</button>
+
+<p class="text-red-600">valor guardado: {{value}}</p>
+
+<button class="button" (click)="eliminar()">eliminar</button>
+
+<p>--------------------------------</p>
 <nav>
  <a class="button" routerLink="/targets-players">iniciando juego</a>
   <a class="button" routerLink="/finish-game">finalizando juego</a> 
