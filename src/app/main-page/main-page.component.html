@@ -17,8 +17,8 @@
       type="text"
       [(ngModel)]="nuevo_jugador"
       (keydown.enter)="agregar()"
-      placeholder="Escribe algo"
-      class="flex-1 px-2 py-1 border rounded border-gray-800"
+      placeholder="nuevo participante"
+      class="flex-1 px-2 py-1 border rounded border-gray-800 placeholder:text-gray-500"
       />
       <button class="button" (click)="agregar()">agregar</button>
     </div>
@@ -41,11 +41,17 @@
   <div class="w-full max-w-md">
     <p class="text-center mb-4">--------------------------------</p>
     <nav class="flex gap-2 justify-center">
-      <a class="button" routerLink="/targets-players">Iniciar juego</a>
-
+      <a class="button"  [routerLink]="disable_boton ? null : '/targets-players'">Iniciar juego</a>
+      <!-- <a class="button" routerLink="/finish-game">finalizando juego</a>  -->
     </nav>
   </div>
 
 </div>
 
+<!-- <button class="button" (click)="guardar()">guardar</button>
+<button class="button" (click)="leer()">mostrar</button>
+
+<p class="text-red-600">valor guardado: {{value}}</p>
+
+<button class="button" (click)="eliminar()">eliminar</button> -->
 

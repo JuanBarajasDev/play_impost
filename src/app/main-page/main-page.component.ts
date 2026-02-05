@@ -34,13 +34,12 @@ export class MainPageComponent {
   }
 
   //logica para agregar integrantes o eliminar
-  isAgreed : boolean = false
+
   nuevo_jugador= "";
 
   jugadores: {id: number, name: string}[]= [{id: 1, name: 'jugador 1'}, {id: 2, name: 'jugador 2'}, {id: 3, name: 'jugador 3'} ];
 
-  categorias : {checked: boolean, categoria: string}[] = [{checked: false, categoria: 'objetos cotidianos'},{checked: false, categoria: 'logos'},{checked: false, categoria: 'comidas y bebidas'},{checked: false, categoria: 'personas famosas'} ]
-
+  
   agregar() {
     if (!this.nuevo_jugador.trim()) return;
     
@@ -53,9 +52,9 @@ export class MainPageComponent {
     
     this.jugadores = this.jugadores.filter(j => j.id != id)
   }
-
+  
   cambiar_nombre(id: number, nuevo_nombre: string){
-    if(!nuevo_nombre.trim()) return;
+    if(!nuevo_nombre.trim()) return console.log('nombre vacio, no se cambia');
     this.jugadores = this.jugadores.map(j => j.id == id ? {...j, name: nuevo_nombre} : j)
     console.log('ya se cambio el nombre', this.jugadores)
   }
@@ -65,16 +64,24 @@ export class MainPageComponent {
     return jugador.id
     
   }
-
+  
   //logica para categorias
+  
+  categorias : {checked: boolean, categoria: string}[] = [{checked: true, categoria: 'objetos cotidianos'},{checked: false, categoria: 'logos'},{checked: false, categoria: 'comidas y bebidas'},{checked: false, categoria: 'personas famosas'} ]
+  disable_boton = false;
   tema_escogido(categoria: string) {
-   
     this.categorias = this.categorias.map(c => c.categoria == categoria ? {...c, checked: !c.checked} : c)
+    if(this.categorias.every(c => !c.checked)) {
+    window.alert('debe seleccionar al menos una categoria para continuar');
+    this.disable_boton = true;
+    }else {
+      this.disable_boton = false;
+    }
     console.log(this.categorias)
   }
   trackByCat(_: number, cat: { categoria: string }) {
     return cat.categoria;
   }
-  
+
 
 }
