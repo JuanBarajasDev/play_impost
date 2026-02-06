@@ -19,9 +19,14 @@ export class MainPageComponent {
   constructor(private storage: BrowserStorageService) {}
 
   guardar(){
-    this.storage.set('mensaje', 'hola mundo klk')
-    this.storage.set('otro', 'nueva prueba')
-    console.log('guardado exitosamente')
+    if(!this.disable_boton){
+
+      this.storage.set('jugadores', JSON.stringify(this.jugadores))
+      this.storage.set('categorias', JSON.stringify(this.categorias))
+      console.log('guardado exitosamente')
+    }
+    console.log('no se puede guardar, debe seleccionar al menos una categoria')
+
   }
 
   leer() {
@@ -32,7 +37,8 @@ export class MainPageComponent {
     this.storage.remove('mensaje')
     console.log('eliminado con exito')
   }
-
+  ngOnInit(){
+  }
   //logica para agregar integrantes o eliminar
 
   nuevo_jugador= "";
@@ -69,6 +75,7 @@ export class MainPageComponent {
   
   categorias : {checked: boolean, categoria: string}[] = [{checked: true, categoria: 'objetos cotidianos'},{checked: false, categoria: 'logos'},{checked: false, categoria: 'comidas y bebidas'},{checked: false, categoria: 'personas famosas'} ]
   disable_boton = false;
+
   tema_escogido(categoria: string) {
     this.categorias = this.categorias.map(c => c.categoria == categoria ? {...c, checked: !c.checked} : c)
     if(this.categorias.every(c => !c.checked)) {
@@ -79,6 +86,7 @@ export class MainPageComponent {
     }
     console.log(this.categorias)
   }
+
   trackByCat(_: number, cat: { categoria: string }) {
     return cat.categoria;
   }

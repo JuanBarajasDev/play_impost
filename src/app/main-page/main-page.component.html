@@ -41,7 +41,7 @@
   <div class="w-full max-w-md">
     <p class="text-center mb-4">--------------------------------</p>
     <nav class="flex gap-2 justify-center">
-      <a class="button"  [routerLink]="disable_boton ? null : '/targets-players'">Iniciar juego</a>
+      <a class="button"  [routerLink]="disable_boton ? null : '/targets-players'" (click)="guardar()" >Iniciar juego</a>
       <!-- <a class="button" routerLink="/finish-game">finalizando juego</a>  -->
     </nav>
   </div>
