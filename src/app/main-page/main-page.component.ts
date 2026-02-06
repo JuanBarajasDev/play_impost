@@ -21,18 +21,19 @@ export class MainPageComponent {
   guardar(){
     if(!this.disable_boton){
 
-      this.storage.set('jugadores', JSON.stringify(this.jugadores))
-      this.storage.set('categorias', JSON.stringify(this.categorias))
+      this.storage.set('jugadores', this.jugadores)
+      this.storage.set('categorias', this.categorias)
       console.log('guardado exitosamente')
+    }else{
+      console.log('no se puede guardar, debe seleccionar al menos una categoria')
     }
-    console.log('no se puede guardar, debe seleccionar al menos una categoria')
 
   }
 
   leer() {
     this.value = this.storage.get('mensaje')
   }
-  
+
   eliminar(){
     this.storage.remove('mensaje')
     console.log('eliminado con exito')
@@ -43,22 +44,22 @@ export class MainPageComponent {
 
   nuevo_jugador= "";
 
-  jugadores: {id: number, name: string}[]= [{id: 1, name: 'jugador 1'}, {id: 2, name: 'jugador 2'}, {id: 3, name: 'jugador 3'} ];
+  jugadores: {id: number, name: string, palabra: string}[]= [{id: 1, name: 'jugador 1', palabra: ''}, {id: 2, name: 'jugador 2', palabra: ''}, {id: 3, name: 'jugador 3', palabra: ''} ];
 
-  
+
   agregar() {
     if (!this.nuevo_jugador.trim()) return;
-    
-    this.jugadores.push({id: this.jugadores.length + 1, name: this.nuevo_jugador})
+
+    this.jugadores.push({id: this.jugadores.length + 1, name: this.nuevo_jugador, palabra: ''})
     this.nuevo_jugador = "";
   }
 
   eliminar_jugador(id: number){
     if (this.jugadores.length === 3) return;
-    
+
     this.jugadores = this.jugadores.filter(j => j.id != id)
   }
-  
+
   cambiar_nombre(id: number, nuevo_nombre: string){
     if(!nuevo_nombre.trim()) return console.log('nombre vacio, no se cambia');
     this.jugadores = this.jugadores.map(j => j.id == id ? {...j, name: nuevo_nombre} : j)
@@ -68,11 +69,11 @@ export class MainPageComponent {
   //controlar y que no se reinicie el cargar el array
   trackById(index: number, jugador: any){
     return jugador.id
-    
+
   }
-  
+
   //logica para categorias
-  
+
   categorias : {checked: boolean, categoria: string}[] = [{checked: true, categoria: 'objetos cotidianos'},{checked: false, categoria: 'logos'},{checked: false, categoria: 'comidas y bebidas'},{checked: false, categoria: 'personas famosas'} ]
   disable_boton = false;
 
