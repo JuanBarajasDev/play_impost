@@ -1,32 +1,50 @@
 <!-- CONTENEDOR FULL CENTRO -->
- <nav>
-    <a class="button" routerLink="/main-page">Volver</a>
- </nav>
-<div class="min-h-screen flex items-center justify-center">
-  <div
-    class="grid place-items-center w-72 h-48 perspective cursor-pointer"
-    (click)="flipped = !flipped"
-  >
+<div class="min-h-screen flex flex-col items-center justify-center gap-8">
+  <!-- TARJETA ARRIBA -->
+  <div class="grid place-items-center w-72 h-48 perspective cursor-pointer">
     <div
-      class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d"
+      class="relative w-full h-full transition-transform duration-700 transform-style-preserve-3d hover:rotate-y-180"
       [class.rotate-y-180]="flipped"
     >
-
       <!-- FRONT -->
-      <div class="absolute w-full h-full backface-hidden flex items-center justify-center">
-        <p-card header="Frontend" class="text-center bg-amber-300 p-7">
-          <p>Angular · PrimeNG · Tailwind</p>
+      <div
+        class="absolute w-full h-full backface-hidden flex items-center justify-center"
+      >
+        <p-card
+          header="Participante:"
+          class="text-center bg-amber-300 p-10 pr-14 pl-14 font-bold text-2xl rounded-md"
+        >
+          <p class="font-normal">{{ jugador.name }}</p>
         </p-card>
       </div>
 
       <!-- BACK -->
-      <div class="absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center">
-        <p-card header="Backend" class="text-center bg-emerald-300 p-7">
-          <p>Python · APIs · IA</p>
+      <div
+        class="absolute w-full h-full backface-hidden rotate-y-180 flex items-center justify-center"
+      >
+        <p-card
+          *ngIf="jugador.palabra !== 'impostor'"
+          header="La palabra es:"
+          class="text-center bg-emerald-300 p-10 pr-14 pl-14 text-2xl font-bold rounded-md"
+        >
+          <p class="font-normal">{{ jugador.palabra }}</p>
+        </p-card>
+        <p-card
+          *ngIf="jugador.palabra === 'impostor'"
+          header="Eres el:"
+          class="text-center bg-emerald-300 p-7 font-bold text-2xl rounded-md"
+        >
+          <p class="text-red-600 font-normal">{{ jugador.palabra }}</p>
         </p-card>
       </div>
-
     </div>
   </div>
-</div>
 
+  <!-- BOTONES ABAJO EN HORIZONTAL -->
+  <div class="flex gap-4">
+    <nav>
+      <a class="button" routerLink="/main-page">Volver</a>
+    </nav>
+    <button class="button" (click)="mostrar_jugadores()">mostrar jugador</button>
+  </div>
+</div>
