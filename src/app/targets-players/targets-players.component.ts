@@ -3,7 +3,8 @@ import { CardModule } from 'primeng/card';
 import { PALABRAS_CODIFICADAS } from '../palabras';
 import { RouterLink } from "@angular/router";
 import { BrowserStorageService } from '../storage.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule } from '@angular/common'
+import Swal from 'sweetalert2'
 
 @Component({
   selector: 'app-targets-players',

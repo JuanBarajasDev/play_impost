@@ -1,5 +1,5 @@
 <!-- CONTENEDOR FULL CENTRO -->
-<div class="min-h-screen flex flex-col items-center justify-center gap-8">
+<div class="min-h-screen flex flex-col items-center justify-center gap-8 ">
   <!-- TARJETA ARRIBA -->
   <div class="grid place-items-center w-72 h-48 perspective cursor-pointer">
     <div
@@ -34,7 +34,7 @@
           header="Eres el:"
           class="text-center bg-emerald-300 p-7 font-bold text-2xl rounded-md"
         >
-          <p class="text-red-600 font-normal">{{ jugador.palabra }}</p>
+          <p class="text-red-600 font-normal animate__animated animate-bounce animate__delay-2s">{{ jugador.palabra }}</p>
         </p-card>
       </div>
     </div>
@@ -43,8 +43,8 @@
   <!-- BOTONES ABAJO EN HORIZONTAL -->
   <div class="flex gap-4">
     <nav>
-      <a class="button" routerLink="/main-page">Volver</a>
+      <a class="button" routerLink="/main-page">salir de partida</a>
     </nav>
-    <button class="button" (click)="mostrar_jugadores()">mostrar jugador</button>
+    <button class="button" (click)="mostrar_jugadores()">siguiente jugador</button>
   </div>
 </div>
