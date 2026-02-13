@@ -1,3 +1,9 @@
+<!-- BOTON SALIR DE LA PARTIDA -->
+<div class="flex absolute left-4 top-4">
+  <nav>
+    <a class="button" routerLink="/main-page">salir de partida</a>
+  </nav>
+</div>
 <!-- CONTENEDOR FULL CENTRO -->
 <div class="min-h-screen flex flex-col items-center justify-center gap-8 ">
   <!-- TARJETA ARRIBA -->
@@ -42,9 +48,7 @@
 
   <!-- BOTONES ABAJO EN HORIZONTAL -->
   <div class="flex gap-4">
-    <nav>
-      <a class="button" routerLink="/main-page">salir de partida</a>
-    </nav>
+    <button class="button" (click)="iniciar_partida()">Iniciar Juego</button>
     <button class="button" (click)="mostrar_jugadores()">siguiente jugador</button>
   </div>
 </div>
