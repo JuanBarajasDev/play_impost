@@ -39,6 +39,13 @@ export class MainPageComponent {
     console.log('eliminado con exito')
   }
   ngOnInit(){
+  const tipos_categorias = this.storage.get('categorias')
+  if(tipos_categorias){
+    this.categorias = this.categorias.map(c => tipos_categorias.includes(c.categoria) ? {...c, checked: true} : c )
+    console.log(this.categorias)
+  }else{
+    this.categorias[0].checked = true
+  }
   }
   //logica para agregar integrantes o eliminar
 
@@ -74,7 +81,7 @@ export class MainPageComponent {
 
   //logica para categorias
 
-  categorias : {checked: boolean, categoria: string}[] = [{checked: true, categoria: 'Objetos Cotidianos'},{checked: false, categoria: 'Comidas y Bebidas'},{checked: false, categoria: 'Animales'},{checked: false, categoria: 'Paises'},{checked: false, categoria: 'Colores'},{checked: false, categoria: 'Pasatiempos'},{checked: false, categoria: 'Deportes'},{checked: false, categoria: 'Climas y Naturaleza'} ]
+  categorias : {checked: boolean, categoria: string}[] = [{checked: false, categoria: 'Objetos Cotidianos'},{checked: false, categoria: 'Comidas y Bebidas'},{checked: false, categoria: 'Animales'},{checked: false, categoria: 'Paises'},{checked: false, categoria: 'Colores'},{checked: false, categoria: 'Pasatiempos'},{checked: false, categoria: 'Deportes'},{checked: false, categoria: 'Climas y Naturaleza'} ]
   disable_boton = false;
 
   tema_escogido(categoria: string) {
