@@ -25,16 +25,17 @@
   </div>
 
   <div class="flex flex-col gap-3 w-full max-w-md">
-        <p class="text-center  font-bold text-2xl">elige tu categoria</p>
-    <div *ngFor="let categoria of categorias">
-      <label class="flex items-center gap-2">
-        <input 
-        class="cursor-pointer accent-pink-500"
-        type="checkbox"
-        [checked]="categoria.checked"
-        (change)="tema_escogido(categoria.categoria)"
+    <p class="text-center font-bold text-2xl">elige tu categoria</p>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      <label *ngFor="let categoria of categorias; trackBy: trackByCat" class="flex items-center gap-2">
+        <input
+          class="cursor-pointer"
+          type="checkbox"
+          [checked]="categoria.checked"
+          (change)="tema_escogido(categoria.categoria)"
         />
-      {{categoria.categoria}}</label>
+        {{categoria.categoria}}
+      </label>
     </div>
   </div>
 

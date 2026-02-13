@@ -22,7 +22,7 @@ export class MainPageComponent {
     if(!this.disable_boton){
 
       this.storage.set('jugadores', this.jugadores)
-      this.storage.set('categorias', this.categorias)
+      this.storage.set('categorias', this.categorias_seleccionadas())
       console.log('guardado exitosamente')
     }else{
       console.log('no se puede guardar, debe seleccionar al menos una categoria')
@@ -74,7 +74,7 @@ export class MainPageComponent {
 
   //logica para categorias
 
-  categorias : {checked: boolean, categoria: string}[] = [{checked: true, categoria: 'objetos cotidianos'},{checked: false, categoria: 'logos'},{checked: false, categoria: 'comidas y bebidas'},{checked: false, categoria: 'personas famosas'} ]
+  categorias : {checked: boolean, categoria: string}[] = [{checked: true, categoria: 'Objetos Cotidianos'},{checked: false, categoria: 'Comidas y Bebidas'},{checked: false, categoria: 'Animales'},{checked: false, categoria: 'Paises'},{checked: false, categoria: 'Colores'},{checked: false, categoria: 'Pasatiempos'},{checked: false, categoria: 'Deportes'},{checked: false, categoria: 'Climas y Naturaleza'} ]
   disable_boton = false;
 
   tema_escogido(categoria: string) {
@@ -87,7 +87,12 @@ export class MainPageComponent {
     }
     console.log(this.categorias)
   }
+  //categorias seleccionadas
+  categorias_seleccionadas(){
+    return this.categorias.filter(c => c.checked).map(c => c.categoria);
+  }
 
+  // optimizar el ngFor de categorias
   trackByCat(_: number, cat: { categoria: string }) {
     return cat.categoria;
   }

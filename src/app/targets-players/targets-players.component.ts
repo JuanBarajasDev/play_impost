@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { PALABRAS_CODIFICADAS } from '../palabras';
+import { NUEVAS_PALABRAS } from '../palabras';
 import { RouterLink } from "@angular/router";
 import { BrowserStorageService } from '../storage.service';
 import { CommonModule } from '@angular/common'
@@ -22,15 +23,24 @@ flipped = false;
   contador = 0;
   jugador = {id: 0, name: '', palabra: ''};
   jugadores: {id: number, name: string, palabra: string}[]= [];
-
+  array_palabras: string[] = [];
   constructor(private storage: BrowserStorageService){}
 
   ngOnInit(){
     this.obtener_datos();
+    this.unir_palabras_categoria();
     this.juego_iniciado();
     this.jugador = this.jugadores[0];
     this.contador = 1;
 
+  }
+  //organizar y unir palabras de las categorias elegidas para el juego
+  unir_palabras_categoria(){
+    let categorias_elegidas: string[] = JSON.parse(this.storage.get('categorias') || '[]');
+    this.array_palabras = NUEVAS_PALABRAS
+    .filter(p => categorias_elegidas.includes(p.tipo))
+    .flatMap(p => p.palabras)
+    console.log(this.array_palabras)
   }
 // logica para guardar datos en el localStorage
   obtener_datos(){
@@ -42,8 +52,8 @@ flipped = false;
  // logica para iniciar el juego, asignar palabras a los jugadores y elegir al impostor
   juego_iniciado() {
     this.codigo =
-      PALABRAS_CODIFICADAS[
-        Math.floor(Math.random() * PALABRAS_CODIFICADAS.length)
+      this.array_palabras[
+        Math.floor(Math.random() * this.array_palabras.length)
       ];
 
     this.palabra = decodeURIComponent(escape(atob(this.codigo)));
