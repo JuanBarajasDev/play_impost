@@ -1,10 +1,3 @@
-export const PALABRAS_CODIFICADAS: string[] = [
-  'Y2FzYQ==',
- 'cGFycXVl',
-  'ZXNjdWVsYQ==',
-  'aG9zcGl0YWw=',
-  'YWVyb3B1ZXJ0bw=='
-];
 
 export const NUEVAS_PALABRAS: {tipo: string, palabras: Array<string>}[] = [
   {tipo: 'Objetos Cotidianos', palabras: ['Y2FzYQ==','bWVzYQ==','c2lsbGE=','cHVlcnRh','dmVudGFuYQ==','Y2VsdWxhcg==','bGlicm8=','Y3VhZGVybm8=','Y29tcHV0YWRvcg==','cmVsb2o=','emFwYXRv','Y2FtaXNh','cGFudGFsb24=','bW9jaGlsYQ==','Ym90ZWxsYQ==','cGxhdG8=','Y3VjaGFyYQ==','dGVsZXZpc29y','Y2FtYQ==','bGFtcGFyYQ=='  ]},
