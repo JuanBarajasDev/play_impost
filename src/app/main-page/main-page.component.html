@@ -1,58 +1,106 @@
 <!-- contenedor principal -->
-<div class="min-h-screen flex flex-col items-center justify-center gap-8">
-  <!-- ordenar los contenedores -->
-  <p class="text-center  font-bold mt-3 text-2xl">añade los participantes</p>
+<div class="min-h-screen md:h-screen md:overflow-hidden overflow-y-auto flex flex-col items-center justify-center gap-6 bg-co1 text-white">
 
-  <div class="flex flex-col gap-4 w-full max-w-md">
+  <!-- titulo -->
+  <p class="text-center font-bold text-2xl text-co5">
+    añade los participantes
+  </p>
+
+  <div class="flex flex-col gap-4 w-full max-w-md bg-co2 p-6 rounded-2xl shadow-xl">
+
     <div *ngFor="let jugador of jugadores; trackBy: trackById" class="flex items-center gap-2">
+
       <input #inp type="text"
-      [value]="jugador.name"
-      (keydown.enter)="cambiar_nombre(jugador.id, inp.value)"
-      class="flex-1 px-2 py-1 border rounded border-b-gray-400"
-      ><i class="bi bi-x-circle cursor-pointer" (click)="eliminar_jugador(jugador.id)"></i>
+        [value]="jugador.name"
+        (keydown.enter)="cambiar_nombre(jugador.id, inp.value)"
+        class="flex-1 px-3 py-2
+               bg-co1 text-white
+               border border-co3
+               rounded-lg
+               placeholder-co4
+               focus:outline-none
+               focus:border-co5
+               focus:ring-2 focus:ring-co5/30
+               transition"
+      >
+
+      <i class="bi bi-x-circle text-co4 hover:text-co5 cursor-pointer transition"
+         (click)="eliminar_jugador(jugador.id)">
+      </i>
+
     </div>
 
     <div class="flex gap-2">
+
       <input
-      type="text"
-      [(ngModel)]="nuevo_jugador"
-      (keydown.enter)="agregar()"
-      placeholder="nuevo participante"
-      class="flex-1 px-2 py-1 border rounded border-gray-800 placeholder:text-gray-500"
+        type="text"
+        [(ngModel)]="nuevo_jugador"
+        (keydown.enter)="agregar()"
+        placeholder="nuevo participante"
+        class="flex-1 px-3 py-2
+               bg-co1 text-white
+               border border-co3
+               rounded-lg
+               placeholder-co4
+               focus:outline-none
+               focus:border-co5
+               focus:ring-2 focus:ring-co5/30
+               transition"
       />
-      <button class="button" (click)="agregar()">agregar</button>
+
+      <button
+        class="bg-co5 text-co1 px-5 py-2 rounded-lg hover:bg-co4 transition font-medium"
+        (click)="agregar()">
+        agregar
+      </button>
+
     </div>
   </div>
 
-  <div class="flex flex-col gap-3 w-full max-w-md">
-    <p class="text-center font-bold text-2xl">elige tu categoria</p>
+  <!-- categorias -->
+  <div class="flex flex-col gap-3 w-full max-w-md bg-co2 p-6 rounded-2xl shadow-xl">
+
+    <p class="text-center font-bold text-2xl text-co5">
+      elige tu categoria
+    </p>
+
     <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <label *ngFor="let categoria of categorias; trackBy: trackByCat" class="flex items-center gap-2">
+
+      <label *ngFor="let categoria of categorias; trackBy: trackByCat"
+             class="flex items-center gap-2 text-co4 hover:text-co5 transition">
+
         <input
-          class="cursor-pointer"
+          class="cursor-pointer accent-co5"
           type="checkbox"
           [checked]="categoria.checked"
           (change)="tema_escogido(categoria.categoria)"
         />
+
         {{categoria.categoria}}
+
       </label>
+
     </div>
   </div>
 
-  <div class="w-full max-w-md">
-    <p class="text-center mb-4">--------------------------------</p>
+  <!-- boton iniciar -->
+  <div class="w-full max-w-md ">
+
     <nav class="flex gap-2 justify-center">
-      <a class="button"  [routerLink]="disable_boton ? null : '/targets-players'" (click)="guardar()" >Iniciar juego</a>
-      <!-- <a class="button" routerLink="/finish-game">finalizando juego</a>  -->
+
+      <a
+        class="bg-co5 text-co1 px-6 py-3 rounded-xl
+               hover:bg-co4 transition
+               font-semibold shadow-lg"
+        [routerLink]="disable_boton ? null : '/targets-players'"
+        (click)="guardar()">
+
+        Iniciar juego
+
+      </a>
+
     </nav>
+
   </div>
 
 </div>
-
-<!-- <button class="button" (click)="guardar()">guardar</button>
-<button class="button" (click)="leer()">mostrar</button>
-
-<p class="text-red-600">valor guardado: {{value}}</p>
-
-<button class="button" (click)="eliminar()">eliminar</button> -->
-

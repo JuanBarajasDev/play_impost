@@ -23,6 +23,7 @@ flipped = false;
   jugador = {id: 0, name: '', palabra: ''};
   jugadores: {id: number, name: string, palabra: string}[]= [];
   array_palabras: string[] = [];
+  persona_inicia_ronda = '';
   constructor(private storage: BrowserStorageService, private router: Router){};
 
   ngOnInit(){
@@ -65,11 +66,15 @@ flipped = false;
         this.jugadores[i].palabra = this.palabra;
       }
     }
-
+    this.persona_inicia_partida()
     console.log(this.jugadores);
   }
 
-
+  persona_inicia_partida(){
+    let escoger_participante = this.jugadores.filter(p => p.id !== this.numero_impostor + 1)
+    let persona_escogida = escoger_participante[Math.floor(Math.random() * escoger_participante.length)]
+    this.persona_inicia_ronda = persona_escogida.name
+  }
   // logica para mostrar el jugador actual y rotar entre ellos
   mostrar_jugadores() {
     this.jugador = this.jugadores[this.contador];
@@ -97,11 +102,23 @@ flipped = false;
       imageHeight: '100',
       imageWidth: '100',
       title: "Ronda Iniciada!!",
-      text: "Recuerda finalizar la ronda para revelar al impostor!",
+      html: `  <div class="text-white">
+      <p>Recuerda finalizar la ronda para revelar al impostor!</p>
+      <p class="pt-1">En esta ronda inicia: <b class= "text-co-5">${this.persona_inicia_ronda}</b></p>
+      </div>`,
       showDenyButton: true,
       denyButtonText: "Salir",
       confirmButtonText: "Revelar",
-      allowOutsideClick: false
+      allowOutsideClick: false,
+      background: '#823641',
+      color: '#ffffff',
+      buttonsStyling: false,
+      customClass: {
+        title: 'text-co5 font-bold',
+        actions: 'flex gap-3 justify-center mt-4',
+        confirmButton: 'bg-co5 text-co1 px-4 py-2 rounded-lg font-semibold cursor-pointer',
+        denyButton: 'border border-co5 text-co5 px-4 py-2 rounded-lg cursor-pointer'
+      },
 }).then((result) => {
   if(result.isConfirmed){
     Swal.fire({
@@ -110,13 +127,21 @@ flipped = false;
       imageHeight: '100',
       imageWidth: '100',
       title: 'Ronda Finalizada!',
-      html: `  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-      <p>El impostor era: <b>${info.impostor}</b></p>
-      <p>La palabra fue: <b>${info.palabra}</b> </p>
+      html: `  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 text-white">
+      <p>El impostor era:  <b class= "text-co-5">${info.impostor}</b></p>
+      <p>La palabra fue: <b class= "text-co-5">${info.palabra}</b> </p>
       </div>`,
       showDenyButton: true,
       denyButtonText: 'Salir',
-      confirmButtonText: 'Nueva Ronda'
+      confirmButtonText: 'Nueva Ronda',
+      background: '#823641',
+      color: '#ffffff',
+      buttonsStyling: false,
+      customClass: {
+        title: 'text-co5 font-bold',
+        confirmButton: 'bg-co5 text-co1 px-4 py-2 rounded-lg font-semibold mx-2 cursor-pointer',
+        denyButton: 'border border-co5 text-co5 px-4 py-2 rounded-lg mx-2 cursor-pointer'
+      },
     }).then((result) => {
       if(result.isConfirmed){
         this.juego_iniciado()
