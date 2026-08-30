@@ -1,59 +1,40 @@
-# Aprendizaje
+# Play Impost — Mini juego estilo Impostor
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.2.19.
+Mini juego desarrollado con **Angular** inspirado en la dinámica del juego popular "Impostor". El jugador debe identificar la palabra intrusa dentro de una categoría seleccionada. Proyecto de práctica personal enfocado en lógica de juego, manejo de estado de componentes y combinación de librerías en Angular.
 
-## Development server
+##  ¿Cómo funciona?
+- El usuario escoge una categoría (varias disponibles de forma gratuita)
+- Se muestra un grupo de palabras relacionadas con la categoría
+- Una de ellas es el impostor — una palabra que no pertenece al grupo
+- El jugador debe identificarla antes de que se acabe el tiempo
 
-To start a local development server, run:
+##  Tecnologías
+- Angular 19
+- TypeScript
+- HTML5 / CSS3
+- PostCSS
+
+##  Instalación y uso
 
 ```bash
+# Clonar el repositorio
+git clone https://github.com/JuanBarajasDev/play_impost.git
+cd play_impost
+
+# Instalar dependencias
+npm install
+
+# Levantar servidor de desarrollo
 ng serve
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+Abre el navegador en `http://localhost:4200/`
 
-## Code scaffolding
+##  Contexto del proyecto
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Proyecto personal desarrollado para practicar habilidades de lógica, gestión de estado en componentes Angular y exploración de librerías externas. Representa mi primer mini juego interactivo construido con un framework frontend real.
 
-```bash
-ng generate component component-name
-```
-
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
-
-```bash
-ng generate --help
-```
-
-## Building
-
-To build the project run:
-
-```bash
-ng build
-```
-
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+##  Autor
+**Juan Camilo Barajas Guacheta**
+- GitHub: [@JuanBarajasDev](https://github.com/JuanBarajasDev)
+- LinkedIn: [juan-barajas-develop](https://www.linkedin.com/in/juan-barajas-develop/)
